@@ -26,10 +26,12 @@ export const filterAsyncRouter = (routers) => { // 遍历后台传来的路由�
         router.component = Layout
       } else {
         const component = router.component
+        // 懒加载
         router.component = loadView(component)
       }
     }
     if (router.children && router.children.length) {
+      // 递归处理下级菜单
       router.children = filterAsyncRouter(router.children)
     }
     return true

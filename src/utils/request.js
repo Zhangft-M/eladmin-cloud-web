@@ -16,7 +16,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     if (getToken()) {
-      config.headers['Authorization'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+      config.headers['Authorization'] = 'bearer ' + getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
     }
     config.headers['Content-Type'] = 'application/json'
     return config
@@ -38,6 +38,7 @@ service.interceptors.response.use(
       })
       return Promise.reject('error')
     } else {
+      // console.log(response)
       return response.data
     }
   },

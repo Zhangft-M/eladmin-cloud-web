@@ -137,7 +137,7 @@ function CRUD(options) {
             table.store.states.treeData = {}
             table.store.states.lazyTreeNodeMap = {}
           }
-          crud.page.total = data.totalElements
+          crud.page.total = data.total
           crud.data = data.content
           crud.resetDataStatus()
           // time 毫秒后显示表格
@@ -607,9 +607,15 @@ function callVmHook(crud, hook) {
   return ret
 }
 
+/**
+ * 将自定义的属性与默认属性整合
+ * @param src
+ * @param opts
+ * @returns {*}
+ */
 function mergeOptions(src, opts) {
   const optsRet = {
-    ...src
+    ...src // 解构成另一个对象
   }
   for (const key in src) {
     if (opts.hasOwnProperty(key)) {
@@ -652,6 +658,7 @@ function presenter(crud) {
     },
     beforeCreate() {
       this.$crud = this.$crud || {}
+      // 判断页面中的cruds()是否是方法，如果是直接调用页面中声明的cruds()方法
       let cruds = this.$options.cruds instanceof Function ? this.$options.cruds() : crud
       if (!(cruds instanceof Array)) {
         cruds = [cruds]

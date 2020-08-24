@@ -2,17 +2,14 @@ import JSEncrypt from 'jsencrypt/bin/jsencrypt'
 
 // 密钥对生成 http://web.chacuo.net/netrsakeypair
 
-const publicKey = 'MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANL378k3RiZHWx5AfJqdH9xRNBmD9wGD\n' +
-  '2iRe41HdTNF8RUhNnHit5NpMNtGL0NPTSSpPjjI1kJfVorRvaQerUgkCAwEAAQ=='
+const publicKey = 'MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMH+iKg2R9NjNEjyz+dB5Bu5CsXgFscWlMDqiUAIIJ2MzCsHMsD2qIPTEsQd+U0nI5oVDSsAHF9LbYEIDohqyNECAwEAAQ=='
 
-const privateKey = 'MIIBUwIBADANBgkqhkiG9w0BAQEFAASCAT0wggE5AgEAAkEA0vfvyTdGJkdbHkB8\n' +
-  'mp0f3FE0GYP3AYPaJF7jUd1M0XxFSE2ceK3k2kw20YvQ09NJKk+OMjWQl9WitG9p\n' +
-  'B6tSCQIDAQABAkA2SimBrWC2/wvauBuYqjCFwLvYiRYqZKThUS3MZlebXJiLB+Ue\n' +
-  '/gUifAAKIg1avttUZsHBHrop4qfJCwAI0+YRAiEA+W3NK/RaXtnRqmoUUkb59zsZ\n' +
-  'UBLpvZgQPfj1MhyHDz0CIQDYhsAhPJ3mgS64NbUZmGWuuNKp5coY2GIj/zYDMJp6\n' +
-  'vQIgUueLFXv/eZ1ekgz2Oi67MNCk5jeTF2BurZqNLR3MSmUCIFT3Q6uHMtsB9Eha\n' +
-  '4u7hS31tj1UWE+D+ADzp59MGnoftAiBeHT7gDMuqeJHPL4b+kC+gzV4FGTfhR9q3\n' +
-  'tTbklZkD2A=='
+const privateKey = 'MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAoMmotm6OTGV\n' +
+  'jCfIUb/KWbzswXMzmJSqVgw9mQpJv3sht/mFDBlpnsbgOHfncBapnvoRXQJqMJwmxJgGPzkJwDQI\n' +
+  'DAQABAkAd7IoGsdqv4yqkfjZJg2d1+hkNHGE0x5Ed3C7W8vP5DR61qttArlOllpR/Ibye5GU3Xc0s\n' +
+  'kt/SHEKDggTajcJNAiEA1YULYcQG5iD6RVWcQ/sadqcmE754RQ5QxBC0d6EHyC8CIQDAxuCIjJ1A9ri\n' +
+  'TysY/xTGtzmkwAHw6MFVCInMudGkAgwIhALxbr9zBJyzgLqf3i/DUlVXSwl5sioCwzkMIUYuu/MR1Ai\n' +
+  'EAodRSGU8xk5+KQ0cuNcpsceOdGdbOcmqwp9wTpSPEIdECIEF4fSIP32s183AX4l2GphGGigSWzhZt+wayY8HM4e3r'
 
 // 加密
 export function encrypt(txt) {

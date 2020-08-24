@@ -169,7 +169,7 @@ export default {
   name: 'Menu',
   components: { Treeselect, IconSelect, crudOperation, rrOperation, udOperation, DateRangePicker },
   cruds() {
-    return CRUD({ title: '菜单', url: 'api/menus', crudMethod: { ...crudMenu }})
+    return CRUD({ title: '菜单', url: 'sys/menus', sort: 'menu_id,asc', crudMethod: { ...crudMenu }})
   },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   data() {

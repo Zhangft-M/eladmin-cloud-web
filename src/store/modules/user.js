@@ -31,9 +31,12 @@ const user = {
       const rememberMe = userInfo.rememberMe
       return new Promise((resolve, reject) => {
         login(userInfo.username, userInfo.password, userInfo.code, userInfo.uuid).then(res => {
-          setToken(res.token, rememberMe)
-          commit('SET_TOKEN', res.token)
-          setUserInfo(res.user, commit)
+          // 存储token到cookie
+          setToken(res.access_token, rememberMe)
+          // 存储token到store中
+          commit('SET_TOKEN', res.access_token)
+          // 存储用户的信息到store中
+          // setUserInfo(res.user, commit)
           // 第一次加载菜单时用到， 具体见 src 目录下的 permission.js
           commit('SET_LOAD_MENUS', true)
           resolve()
@@ -43,10 +46,12 @@ const user = {
       })
     },
 
+    // 在router.js中会调用该动作,通过权限加载菜单
     // 获取用户信息
     GetInfo({ commit }) {
       return new Promise((resolve, reject) => {
         getInfo().then(res => {
+          // TODO: 登录的时候也进行加载用户信息操作，下面这一步骤在登陆中可以去掉
           setUserInfo(res, commit)
           resolve(res)
         }).catch(error => {
@@ -86,6 +91,7 @@ export const setUserInfo = (res, commit) => {
   if (res.roles.length === 0) {
     commit('SET_ROLES', ['ROLE_SYSTEM_DEFAULT'])
   } else {
+    // 存储角色信息
     commit('SET_ROLES', res.roles)
   }
   commit('SET_USER', res.user)

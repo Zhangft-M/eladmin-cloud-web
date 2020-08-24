@@ -2,14 +2,14 @@ import request from '@/utils/request'
 
 export function getMenusTree(pid) {
   return request({
-    url: 'api/menus/lazy?pid=' + pid,
+    url: 'sys/menus/lazy?pid=' + pid,
     method: 'get'
   })
 }
 
 export function getMenus(params) {
   return request({
-    url: 'api/menus',
+    url: 'sys/menus',
     method: 'get',
     params
   })
@@ -18,7 +18,7 @@ export function getMenus(params) {
 export function getMenuSuperior(ids) {
   const data = ids.length || ids.length === 0 ? ids : Array.of(ids)
   return request({
-    url: 'api/menus/superior',
+    url: 'sys/menus/superior',
     method: 'post',
     data
   })
@@ -26,14 +26,14 @@ export function getMenuSuperior(ids) {
 
 export function buildMenus() {
   return request({
-    url: 'api/menus/build',
+    url: 'sys/menus/build',
     method: 'get'
   })
 }
 
 export function add(data) {
   return request({
-    url: 'api/menus',
+    url: 'sys/menus',
     method: 'post',
     data
   })
@@ -41,7 +41,7 @@ export function add(data) {
 
 export function del(ids) {
   return request({
-    url: 'api/menus',
+    url: 'sys/menus',
     method: 'delete',
     data: ids
   })
@@ -49,7 +49,7 @@ export function del(ids) {
 
 export function edit(data) {
   return request({
-    url: 'api/menus',
+    url: 'sys/menus',
     method: 'put',
     data
   })

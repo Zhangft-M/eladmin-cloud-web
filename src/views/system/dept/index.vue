@@ -114,7 +114,7 @@ export default {
   name: 'Dept',
   components: { Treeselect, crudOperation, rrOperation, udOperation, DateRangePicker },
   cruds() {
-    return CRUD({ title: '部门', url: 'api/dept', crudMethod: { ...crudDept }})
+    return CRUD({ title: '部门', url: 'sys/dept', crudMethod: { ...crudDept }})
   },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   // 设置数据字典
@@ -142,6 +142,7 @@ export default {
     }
   },
   methods: {
+    // 加载子节点数据
     getDeptDatas(tree, treeNode, resolve) {
       const params = { pid: tree.id }
       setTimeout(() => {

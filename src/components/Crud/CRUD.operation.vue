@@ -123,15 +123,21 @@ export default {
   props: {
     permission: {
       type: Object,
-      default: () => { return {} }
+      default: () => {
+        return {}
+      }
     },
     hiddenColumns: {
       type: Array,
-      default: () => { return [] }
+      default: () => {
+        return []
+      }
     },
     ignoreColumns: {
       type: Array,
-      default: () => { return [] }
+      default: () => {
+        return []
+      }
     }
   },
   data() {
@@ -253,13 +259,14 @@ export default {
 </script>
 
 <style>
-  .crud-opts {
-    padding: 4px 0;
-    display: -webkit-flex;
-    display: flex;
-    align-items: center;
-  }
-  .crud-opts .crud-opts-right {
-    margin-left: auto;
-  }
+.crud-opts {
+  padding: 4px 0;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+}
+
+.crud-opts .crud-opts-right {
+  margin-left: auto;
+}
 </style>

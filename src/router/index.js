@@ -54,8 +54,11 @@ router.beforeEach((to, from, next) => {
 
 export const loadMenus = (next, to) => {
   buildMenus().then(res => {
+    // 获取动态路由
     const asyncRouter = filterAsyncRouter(res)
     asyncRouter.push({ path: '*', redirect: '/404', hidden: true })
+    // 查看permission.js中的action
+    // 将路由进行全局存储
     store.dispatch('GenerateRoutes', asyncRouter).then(() => { // 存储路由
       router.addRoutes(asyncRouter) // 动态添加可访问路由表
       next({ ...to, replace: true })

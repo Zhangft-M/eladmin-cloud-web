@@ -89,6 +89,7 @@ export default {
   methods: {
     getCode() {
       getCodeImg().then(res => {
+        console.log(res)
         this.codeUrl = res.img
         this.loginForm.uuid = res.uuid
       })
@@ -122,6 +123,7 @@ export default {
         if (valid) {
           this.loading = true
           if (user.rememberMe) {
+            // 设置记住选项，保存到cookies中
             Cookies.set('username', user.username, { expires: Config.passCookieExpires })
             Cookies.set('password', user.password, { expires: Config.passCookieExpires })
             Cookies.set('rememberMe', user.rememberMe, { expires: Config.passCookieExpires })
@@ -130,6 +132,7 @@ export default {
             Cookies.remove('password')
             Cookies.remove('rememberMe')
           }
+          // 调用全局存储动作login
           this.$store.dispatch('Login', user).then(() => {
             this.loading = false
             this.$router.push({ path: this.redirect || '/' })
