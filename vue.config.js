@@ -26,13 +26,6 @@ module.exports = {
       errors: true
     },
     proxy: {
-      '/api': {
-        target: process.env.VUE_APP_BASE_API,
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': 'api'
-        }
-      },
       '/auth': {
         target: process.env.VUE_APP_BASE_API,
         changeOrigin: true,
@@ -45,6 +38,13 @@ module.exports = {
         changeOrigin: true,
         pathRewrite: {
           '^/sys': 'sys'
+        }
+      },
+      '/log': {
+        target: process.env.VUE_APP_BASE_API,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/log': 'log'
         }
       }
     }
