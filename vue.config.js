@@ -46,6 +46,13 @@ module.exports = {
         pathRewrite: {
           '^/log': 'log'
         }
+      },
+      '/gen': {
+        target: process.env.VUE_APP_BASE_API,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/gen': 'gen'
+        }
       }
     }
   },

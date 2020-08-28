@@ -1,15 +1,15 @@
 import request from '@/utils/request'
 
-export function get(tableName) {
+export function get(dbName, tableName) {
   return request({
-    url: 'api/genConfig/' + tableName,
+    url: `gen/genConfig/${dbName}/${tableName}`,
     method: 'get'
   })
 }
 
 export function update(data) {
   return request({
-    url: 'api/genConfig',
+    url: 'gen/genConfig',
     data,
     method: 'put'
   })

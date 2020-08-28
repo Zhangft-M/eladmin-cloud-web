@@ -2,14 +2,14 @@ import request from '@/utils/request'
 
 export function getAllTable() {
   return request({
-    url: 'api/generator/tables/all',
+    url: 'gen/generator/tables/all',
     method: 'get'
   })
 }
 
-export function generator(tableName, type) {
+export function generator(dbName, tableName, type) {
   return request({
-    url: 'api/generator/' + tableName + '/' + type,
+    url: `gen/generator/${dbName}/${tableName}/${type}`,
     method: 'post',
     responseType: type === 2 ? 'blob' : ''
   })
@@ -17,16 +17,17 @@ export function generator(tableName, type) {
 
 export function save(data) {
   return request({
-    url: 'api/generator',
+    url: 'gen/generator',
     data,
     method: 'put'
   })
 }
 
-export function sync(tables) {
+export function sync(dbName, tables) {
   return request({
-    url: 'api/generator/sync',
+    url: 'gen/generator/sync',
     method: 'post',
+    params: { 'dbName': dbName },
     data: tables
   })
 }

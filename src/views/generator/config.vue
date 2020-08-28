@@ -209,7 +209,7 @@ export default {
   data() {
     return {
       activeName: 'first', tableName: '', tableHeight: 550, columnLoading: false, configLoading: false, dicts: [], syncLoading: false, genLoading: false,
-      form: { id: null, tableName: '', author: '', pack: '', path: '', moduleName: '', cover: 'false', apiPath: '', prefix: '', apiAlias: null },
+      form: { id: null, dbName: '', tableName: '', author: '', pack: '', path: '', moduleName: '', cover: 'false', apiPath: '', prefix: '', apiAlias: null },
       rules: {
         author: [
           { required: true, message: '作者不能为空', trigger: 'blur' }
@@ -229,15 +229,17 @@ export default {
         cover: [
           { required: true, message: '不能为空', trigger: 'blur' }
         ]
-      }
+      },
+      dbName: ''
     }
   },
   created() {
+    this.dbName = this.$route.query.dbName
     this.tableHeight = document.documentElement.clientHeight - 385
     this.tableName = this.$route.params.tableName
     this.$nextTick(() => {
       this.init()
-      get(this.tableName).then(data => {
+      get(this.dbName, this.tableName).then(data => {
         this.form = data
         this.form.cover = this.form.cover.toString()
       })
@@ -248,9 +250,10 @@ export default {
   },
   methods: {
     beforeInit() {
-      this.url = 'api/generator/columns'
+      this.url = 'gen/generator/columns'
       const tableName = this.tableName
-      this.params = { tableName }
+      const dbName = this.dbName
+      this.params = { tableName, dbName }
       return true
     },
     saveColumnConfig() {
@@ -266,6 +269,9 @@ export default {
     doSubmit() {
       this.$refs['form'].validate((valid) => {
         if (valid) {
+          this.form.dbName = this.dbName
+          this.form.tableName = this.$route.params.tableName
+          console.log(this.form)
           this.configLoading = true
           update(this.form).then(res => {
             this.notify('保存成功', 'success')
@@ -281,7 +287,7 @@ export default {
     },
     sync() {
       this.syncLoading = true
-      sync([this.tableName]).then(() => {
+      sync(this.dbName, [this.tableName]).then(() => {
         this.init()
         this.notify('同步成功', 'success')
         this.syncLoading = false
@@ -294,7 +300,7 @@ export default {
       save(this.data).then(res => {
         this.notify('保存成功', 'success')
         // 生成代码
-        generator(this.tableName, 0).then(data => {
+        generator(this.dbName, this.tableName, 0).then(data => {
           this.genLoading = false
           this.notify('生成成功', 'success')
         }).catch(err => {
