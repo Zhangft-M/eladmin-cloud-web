@@ -53,6 +53,13 @@ module.exports = {
         pathRewrite: {
           '^/gen': 'gen'
         }
+      },
+      '/router': {
+        target: process.env.VUE_APP_BASE_API,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/router': 'router'
+        }
       }
     }
   },
