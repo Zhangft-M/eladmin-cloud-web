@@ -36,7 +36,8 @@ router.beforeEach((to, from, next) => {
       } else if (store.getters.loadMenus) {
         // 修改成false，防止死循环
         store.dispatch('updateLoadMenus').then(res => {})
-        loadMenus(next, to)
+        // loadMenus(next, to)
+        next()
       } else {
         next()
       }

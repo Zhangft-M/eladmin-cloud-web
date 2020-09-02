@@ -38,7 +38,7 @@ export function getCodeImg() {
 
 export function logout() {
   return request({
-    url: 'auth/logout',
+    url: 'auth/token/logout',
     method: 'delete'
   })
 }

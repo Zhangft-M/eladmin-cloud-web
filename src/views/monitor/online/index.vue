@@ -24,8 +24,9 @@
     <el-table ref="table" v-loading="crud.loading" :data="crud.data" style="width: 100%;" @selection-change="crud.selectionChangeHandler">
       <el-table-column type="selection" width="55" />
       <el-table-column prop="userName" label="用户名" />
-      <el-table-column prop="nickName" label="用户昵称" />
-      <el-table-column prop="dept" label="部门" />
+      <el-table-column prop="accessToken" label="访问令牌" />
+      <el-table-column prop="refreshToken" label="刷新令牌" />
+      <el-table-column prop="expireIn" label="有效时间" />
       <el-table-column prop="ip" label="登录IP" />
       <el-table-column :show-overflow-tooltip="true" prop="address" label="登录地点" />
       <el-table-column prop="browser" label="浏览器" />
@@ -45,7 +46,7 @@
             <p>确定强制退出该用户吗？</p>
             <div style="text-align: right; margin: 0">
               <el-button size="mini" type="text" @click="$refs[scope.$index].doClose()">取消</el-button>
-              <el-button :loading="delLoading" type="primary" size="mini" @click="delMethod(scope.row.key, scope.$index)">确定</el-button>
+              <el-button :loading="delLoading" type="primary" size="mini" @click="delMethod(scope.row.id, scope.$index)">确定</el-button>
             </div>
             <el-button slot="reference" size="mini" type="text">强退</el-button>
           </el-popover>
@@ -68,7 +69,7 @@ export default {
   name: 'OnlineUser',
   components: { pagination, crudOperation, rrOperation },
   cruds() {
-    return CRUD({ url: 'auth/online', title: '在线用户' })
+    return CRUD({ url: 'auth/oauth/online', title: '在线用户' })
   },
   mixins: [presenter(), header(), crud()],
   data() {
@@ -101,7 +102,7 @@ export default {
       const ids = []
       if (key instanceof Array) {
         key.forEach(val => {
-          ids.push(val.key)
+          ids.push(val.id)
         })
       } else ids.push(key)
       this.delLoading = true
