@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     beforeInit() {
-      this.url = 'api/deployHistory'
+      this.url = 'mnt/deployHistory'
       this.deployId = this.$parent.deployId
       if (this.deployId === '') {
         return false

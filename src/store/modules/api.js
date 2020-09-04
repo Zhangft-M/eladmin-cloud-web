@@ -19,6 +19,10 @@ const api = {
     swaggerApi: baseUrl + '/swagger-ui.html',
     // 文件上传
     fileUploadApi: baseUrl + '/api/localStorage',
+    // 任务调度中心
+    jobApi: baseUrl + '/xxl-job-admin',
+    // nacos管理中心
+    nacosApi: baseUrl + '/nacos',
     // baseUrl，
     baseApi: baseUrl
   }

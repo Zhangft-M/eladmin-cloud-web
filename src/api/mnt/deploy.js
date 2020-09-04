@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function add(data) {
   return request({
-    url: 'api/deploy',
+    url: 'mnt/deploy',
     method: 'post',
     data
   })
@@ -10,7 +10,7 @@ export function add(data) {
 
 export function del(ids) {
   return request({
-    url: 'api/deploy',
+    url: 'mnt/deploy',
     method: 'delete',
     data: ids
   })
@@ -18,7 +18,7 @@ export function del(ids) {
 
 export function edit(data) {
   return request({
-    url: 'api/deploy',
+    url: 'mnt/deploy',
     method: 'put',
     data
   })
@@ -26,14 +26,14 @@ export function edit(data) {
 
 export function getApps() {
   return request({
-    url: 'api/app',
+    url: 'mnt/app',
     method: 'get'
   })
 }
 
 export function getServers() {
   return request({
-    url: 'api/serverDeploy',
+    url: 'mnt/serverDeploy',
     method: 'get'
   })
 }
