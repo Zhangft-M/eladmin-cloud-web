@@ -67,6 +67,13 @@ module.exports = {
         pathRewrite: {
           '^/mnt': 'mnt'
         }
+      },
+      '/tool': {
+        target: process.env.VUE_APP_BASE_API,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/tool': 'tool'
+        }
       }
     }
   },
